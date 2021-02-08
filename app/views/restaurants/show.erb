@@ -1,0 +1,15 @@
+<h1><%= @restaurant.name %> Detail</h1>
+Restaurant Type: <%= @restaurant.cuisine %> <br>
+Restaurant Rating: <br>
+Restaurant Reviews: <br>
+Number of Visits: <br>
+Logged Dishes: <br>
+<% if @restaurant.user %>
+    Added By User: <%= @restaurant.user.name %> (<%= @restaurant.user.username %>) <br><br>
+<% else %>
+    Added By User: Unknown
+<% end %>
+<form method="post" action="/restaurants/<%= @restaurant.id %>">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+</form>

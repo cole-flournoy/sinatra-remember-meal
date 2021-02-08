@@ -2,5 +2,9 @@
 <% @restaurants.each do |r| %>
     Restaurant Name: <%= r.name %><br>
     Restaurant Type: <%= r.cuisine %> <br>
-    Added By User: <%= r.user.name %> (<%= r.user.username %>) <br><br>
+    <% if r.user %>
+        Added By User: <%= r.user.name %> (<%= r.user.username %>) <br><br>
+    <% else %>
+        Added By User: Unknown
+    <% end %>
 <% end %>
