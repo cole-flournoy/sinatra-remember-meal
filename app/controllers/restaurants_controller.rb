@@ -1,6 +1,12 @@
 class RestaurantsController < ApplicationController
+    
+    configure do
+        set :views, 'app/views/restaurants'
+    end
+    
     get '/restaurants' do
-    # erb :'/restaurants/index'
+        @restaurants = Restaurant.all
+        erb :index
     end
 
     post '/restaurants' do 
