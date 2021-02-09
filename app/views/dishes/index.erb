@@ -1,0 +1,7 @@
+<h1>All Our Users' Dishes</h1>
+<% @dishes.each do |d| %>
+    Dish Name: <%= d.name %><br>
+    Visit Date: <%= d.date %> (<%= d.date - Date.today %> days ago)<br>
+    Rating: <%= d.rating %><br>
+    From Restaurant: <%= d.restaurant.name %><br><br>
+<% end %>

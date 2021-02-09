@@ -1,0 +1,11 @@
+<h1><%= @dish.name %> Detail</h1>
+From Restaurant: <%= @dish.restaurant.name %><br>
+Visit Date: <%= @dish.date %><br>
+Dish Rating: <%= @dish.rating %><br>
+Dish Reviews: <br>
+Number of Times Ordered: <br>
+
+<form method="post" action="/dishes/<%= @dish.id %>">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+</form>

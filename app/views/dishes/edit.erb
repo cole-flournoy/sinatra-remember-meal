@@ -1,0 +1,37 @@
+<h1>Edit Your Dish</h1>
+<form action="/dishes/<%= @dish.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    <label> Dish Name: </label>
+    <input type="text" name="dish[name]" value="<%= @dish.name %>"> </br>
+  
+    <label> Visit Date: </label>
+    <input type="date" name="dish[date]" value="<%= @dish.date %>"> </br>
+
+    <label> Dish Rating: </label>
+    <input type="text" name="dish[rating]" value="<%= @dish.rating %>"> </br>
+
+    <p>Select an existing Restaurant or create a new one below.</p>
+
+    <h3>Existing Restaurants</h3>
+    <% @restaurants.each do |r| %>
+        <input type="radio" name="dish[restaurant_id]" value="<%= r.id %>" <%= 'checked' if @dish.restaurant == r %>><%= r.name %></input><br>
+    <% end %>
+    <br>
+
+    <h3>New Restaurant</h3>
+    <label>Restaurant Name: </label>
+    <input type="text" name="restaurant[name]"></input>
+    <br>
+    <label> Restaurant Type: </label>
+    <input type="text" name="restaurant[cuisine]"> </br>
+    <br><br>
+
+    <input type="submit" value="Edit">
+    <br><br>
+</form>
+
+    <form method="post" action="/dishes/<%= @dish.id %>">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Remove This Dish">
+    </form>
