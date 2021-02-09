@@ -1,29 +1,29 @@
 <h1>Create A New Dish</h1>
 <form action="/dishes" method="POST">
-    <label> Dish Name: </label>
-    <input type="text" name="dish[name]"> </br>
+  <label> Dish Name: </label>
+  <input type="text" name="dish[name]"> </br>
   
-    <label> Visit Date: </label>
-    <input type="date" name="dish[date]"> </br>
+  <label> Visit Date: </label>
+  <input type="date" name="dish[date]"> </br>
 
-    <label> Dish Rating: </label>
-    <input type="text" name="dish[rating]"> </br>
+  <label> Dish Rating: </label>
+  <input type="text" name="dish[rating]"> </br>
 
-    <p>Select an existing Restaurant or create a new one below.</p>
+  <p>Select an existing Restaurant or create a new one below.</p>
 
-    <h3>Existing Restaurants</h3>
-    <% @restaurants.each do |r| %>
-        <input type="radio" name="dish[restaurant_id]" value="<%= r.id %>"><%= r.name %></input><br>
-    <% end %>
-    <br>
+  <h3>Existing Restaurants</h3>
+  <% @restaurants.each do |r| %>
+    <input type="radio" name="dish[restaurant_id]" value="<%= r.id %>"><%= r.name %></input><br>
+  <% end %>
+  <br>
 
-    <h3>New Restaurant</h3>
-    <label>Restaurant Name: </label>
-    <br>
-    <input type="text" name="restaurant[name]"></input>
-    <label> Restaurant Type: </label>
-    <input type="text" name="restaurant[cuisine]"> </br>
-    <br><br>
+  <h3>New Restaurant</h3>
+  <label>Restaurant Name: </label>
+  <br>
+  <input type="text" name="restaurant[name]"></input>
+  <label> Restaurant Type: </label>
+  <input type="text" name="restaurant[cuisine]"> </br>
+  <br><br>
 
-    <input type="submit" value="Create">
+  <input type="submit" value="Create">
 </form>

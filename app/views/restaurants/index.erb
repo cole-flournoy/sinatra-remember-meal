@@ -1,10 +1,10 @@
 <h1>All Our Users' Restaurants</h1>
 <% @restaurants.each do |r| %>
-    Restaurant Name: <%= r.name %><br>
-    Restaurant Type: <%= r.cuisine %> <br>
-    <% if r.user %>
-        Added By User: <%= r.user.name %> (<%= r.user.username %>) <br><br>
-    <% else %>
-        Added By User: Unknown
-    <% end %>
+  Restaurant Name: <%= r.name %><br>
+  Restaurant Type: <%= r.cuisine %> <br>
+  <% if r.user %>
+    Added By User: <%= r.user.name %> (<%= r.user.username %>) <br><br>
+  <% else %>
+    Added By User: Unknown
+  <% end %>
 <% end %>

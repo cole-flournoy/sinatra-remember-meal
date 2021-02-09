@@ -5,11 +5,11 @@ Restaurant Reviews: <br>
 Number of Visits: <br>
 Logged Dishes: <br>
 <% if @restaurant.user %>
-    Added By User: <%= @restaurant.user.name %> (<%= @restaurant.user.username %>) <br><br>
+  Added By User: <%= @restaurant.user.name %> (<%= @restaurant.user.username %>) <br><br>
 <% else %>
-    Added By User: Unknown
+  Added By User: Unknown
 <% end %>
 <form method="post" action="/restaurants/<%= @restaurant.id %>">
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete">
 </form>
