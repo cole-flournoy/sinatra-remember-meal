@@ -1,5 +1,5 @@
-bugs = User.create(name: "Bugs Bunny", username: "space_jam1")
-mj = User.create( name: "Michael Jordan", username: "LikeMike23")
+bugs = User.create(username: "space_jam1", password: "bugsisbest")
+mj = User.create(username: "LikeMike23", password: "mjgoat")
 
 factory = Restaurant.create(name: "The Carrotcake Factory", cuisine: "Healthy", user: bugs)
 ccake = Dish.create(name: "Carrot Cake" , date: Date.today , rating: 5.5, restaurant: factory)

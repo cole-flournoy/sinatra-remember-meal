@@ -9,7 +9,16 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    
+    user = User.new(username: params[:username], password: params[:password])
+
+    if user.save
+      # or auto login
+      user.save
+      redirect '/login'
+    else
+      redirect '/signup'
+    end
+
   end
 
   get '/login' do
