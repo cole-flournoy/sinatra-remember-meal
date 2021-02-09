@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     user = User.new(username: params[:username], password: params[:password])
 
     if user.save
-      # or auto login
       user.save
-      redirect '/login'
+      session[:user_id] = user.id
+      redirect '/restaurants'
     else
       redirect '/signup'
     end
@@ -26,7 +26,15 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-     
+    user = User.find_by(username: params[:username])
+
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      "Congratulations #{user.username}"
+    else
+      "No Match Found"
+      # redirect '/login'
+    end
   end
 
   get '/logout' do
