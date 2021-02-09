@@ -11,17 +11,18 @@ class RestaurantsController < ApplicationController
         erb :index
     end
 
+    get '/restaurants/new' do
+        erb :new
+    end
+
     post '/restaurants' do 
         Restaurant.create(params)
         redirect '/restaurants'
     end
 
-    get '/restaurants/new' do
-        erb :new
-    end
-
     get '/restaurants/:id' do 
         # include more detail here: rating, review, visits, dishes, etc.
+        # most recent dish
         @restaurant = Restaurant.find(params[:id])
         erb :show
     end
@@ -37,9 +38,9 @@ class RestaurantsController < ApplicationController
         erb :edit
     end
     
-    post '/restaurants/:id' do 
-        @restaurant = Restaurant.find(params[:id])
-        @restaurant.update(params)
-        redirect "/restaurants/#{@restaurant.id}"
+    patch '/restaurants/:id' do 
+        restaurant = Restaurant.find(params[:id])
+        restaurant.update(params["restaurant"])
+        redirect "/restaurants/#{restaurant.id}"
     end
 end
