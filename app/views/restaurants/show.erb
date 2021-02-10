@@ -5,7 +5,7 @@ Restaurant Reviews: <br>
 Number of Visits: <br>
 Logged Dishes: <br>
 <% if @restaurant.user %>
-  Added By User: <%= @restaurant.user.name %> (<%= @restaurant.user.username %>) <br><br>
+  Added By User: <%= @restaurant.user.username %> <br><br>
 <% else %>
   Added By User: Unknown
 <% end %>
