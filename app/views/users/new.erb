@@ -1,4 +1,9 @@
 <h1>Sign Up!</h1>
+<% unless !@error_message %>
+  **<%= @error_message %>**<br>
+  If this is your username, please <a href="/login">Log In</a>
+  <br><br>
+<% end %>
 <form action="/signup" method="POST">
   <label> Username: </label>
   <input type="text" name="username"> </br>
