@@ -1,7 +1,14 @@
 <% if @error_message %>
-  <br>
-  **<%= @error_message %>**
-  <br><br>
+  <% if @error_message == "not logged in" %>
+    <br>
+    **You must be logged in to view that content**
+    <br><br>
+  <% elsif @error_message == "no match" %>
+    <br>
+    **There are no users matching that information**<br>
+    Would you like to <a href="/signup">Sign Up?</a>
+    <br><br>
+  <% end %>
 <% else %>
   <h1>Welcome, Please Log In</h1>
 <% end %>

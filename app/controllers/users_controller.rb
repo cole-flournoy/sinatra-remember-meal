@@ -42,14 +42,14 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/restaurants'
     else
-      "No Match Found"
-      # redirect '/login'
+      redirect '/login?error=no match'
     end
   end
 
   get '/logout' do
+    redirect_if_not_logged_in
     session.clear
-    redirect to '../'
+    redirect to '/'
   end
 
 end
