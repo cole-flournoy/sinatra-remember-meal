@@ -1,4 +1,11 @@
-<h1>Welcome, Please Log In</h1>
+<% if @error_message %>
+  <br>
+  **<%= @error_message %>**
+  <br><br>
+<% else %>
+  <h1>Welcome, Please Log In</h1>
+<% end %>
+
 <form action="/login" method="POST">
   <label> Username: </label>
   <input type="text" name="username"> </br>
