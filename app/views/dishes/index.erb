@@ -1,8 +1,13 @@
-<h1>All Our Users' Dishes</h1>
-<% @dishes.each do |d| %>
-  Dish Name: <%= d.name %><br>
-  <% days_ago = Date.today - d.date %>
-  Visit Date: <%= d.date %> (<%= days_ago.to_i %> days ago)<br>
-  Rating: <%= d.rating %><br>
-  From Restaurant: <%= d.restaurant.name %><br><br>
+<h1>Your Dishes</h1>
+<% if @dishes == [] %>
+  <br><br><br>
+  Looks like you haven't logged any dishes yet, would you like to <a href="/dishes/new">add a new one?</a>  
+<% else %>
+  <% @dishes.each do |d| %>
+    Dish Name: <%= d.name %><br>
+    <% days_ago = Date.today - d.date %>
+    Visit Date: <%= d.date %> (<%= days_ago.to_i %> days ago)<br>
+    Rating: <%= d.rating %><br>
+    From Restaurant: <%= d.restaurant.name %><br><br>
+  <% end %>
 <% end %>

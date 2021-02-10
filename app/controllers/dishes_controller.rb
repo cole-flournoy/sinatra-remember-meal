@@ -2,8 +2,8 @@ class DishesController < ApplicationController
 
   get '/dishes' do
     redirect_if_not_logged_in
-    # only the user's dishes
-    @dishes = Dish.all
+    @dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten
+    
     erb :'dishes/index'
   end
 
