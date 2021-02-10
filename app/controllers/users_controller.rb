@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
 
-  configure do
-    set :views, 'app/views/users'
-  end
-
   get '/signup' do
-    erb :new
+    erb :'users/new'
   end
 
   post '/signup' do
@@ -22,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :login
+    erb :'users/login'
   end
 
   post '/login' do
@@ -39,7 +35,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     session.clear
-    redirect '/'
+    redirect to '../'
   end
 
 end

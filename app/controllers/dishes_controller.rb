@@ -1,18 +1,14 @@
 class DishesController < ApplicationController
-       
-  configure do
-    set :views, 'app/views/dishes'
-  end
 
   get '/dishes' do
     # only the user's dishes
     @dishes = Dish.all
-    erb :index
+    erb :'dishes/index'
   end
 
   get '/dishes/new' do
     @restaurants = Restaurant.all
-    erb :new
+    erb :'dishes/new'
   end
 
   post '/dishes' do 
@@ -26,7 +22,7 @@ class DishesController < ApplicationController
 
   get '/dishes/:id' do 
     @dish = Dish.find(params[:id])
-    erb :show
+    erb :'dishes/show'
   end
 
   delete '/dishes/:id' do
@@ -38,7 +34,7 @@ class DishesController < ApplicationController
   get '/dishes/:id/edit' do 
     @dish = Dish.find(params[:id])
     @restaurants = Restaurant.all
-    erb :edit
+    erb :'dishes/edit'
   end
 
   patch '/dishes/:id' do 

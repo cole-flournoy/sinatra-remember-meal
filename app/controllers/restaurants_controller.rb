@@ -1,18 +1,15 @@
 class RestaurantsController < ApplicationController
     
-  configure do
-    set :views, 'app/views/restaurants'
-  end
-    
   get '/restaurants' do
+    redirect_if_not_logged_in
     # make this only the user's restaurants
     # main index at '/' should be all users' restaurants
     @restaurants = Restaurant.all
-    erb :index
+    erb :'restaurants/index'
   end
 
   get '/restaurants/new' do
-    erb :new
+    erb :'restaurants/new'
   end
 
   post '/restaurants' do 
@@ -24,7 +21,7 @@ class RestaurantsController < ApplicationController
     # include more detail here: rating, review, visits, dishes, etc.
     # most recent dish
     @restaurant = Restaurant.find(params[:id])
-    erb :show
+    erb :'restaurants/show'
   end
 
   delete '/restaurants/:id' do
@@ -35,7 +32,7 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants/:id/edit' do 
     @restaurant = Restaurant.find(params[:id])
-    erb :edit
+    erb :'restaurants/edit'
   end
     
   patch '/restaurants/:id' do 
