@@ -31,7 +31,6 @@ class RestaurantsController < ApplicationController
   end
 
   delete '/restaurants/:id' do
-    redirect_if_not_logged_in
     restaurant = Restaurant.find(params[:id])
     restaurant.destroy
     redirect '/restaurants'
@@ -40,11 +39,14 @@ class RestaurantsController < ApplicationController
   get '/restaurants/:id/edit' do 
     redirect_if_not_logged_in
     @restaurant = Restaurant.find(params[:id])
-    erb :'restaurants/edit'
+    if current_user.restaurants.include?(@restaurant)
+      erb :'restaurants/edit'
+    else
+      redirect '/restaurants?error=invalid user'
+    end
   end
     
   patch '/restaurants/:id' do 
-    redirect_if_not_logged_in
     restaurant = Restaurant.find(params[:id])
     restaurant.update(params["restaurant"])
     redirect "/restaurants/#{restaurant.id}"
