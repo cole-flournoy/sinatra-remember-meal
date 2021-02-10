@@ -1,3 +1,17 @@
-<!-- <h3> You must <a href="/login">Log In</a> or <a href="/signup">Sign Up</a> to view more content </h3> -->
+<h2>Welcome!</h2>
 
-<h1>Hello Marzzz</h1>
+<h3>Here are some of our users' restaurants:</h3>
+<% @restaurants.each_with_index do |r, i| %>
+  <%= r.name %> <br>
+  <% break if i == 2 %>
+<% end %>
+
+<h3>Here are some of our users' dishes:</h3>
+<% @dishes.each_with_index do |d, i| %>
+  <%= d.name %> <br>
+  <% break if i == 2 %>
+<% end %>
+
+
+
+<h3> You must <a href="/login">Log In</a> or <a href="/signup">Sign Up</a> to view more content </h3>

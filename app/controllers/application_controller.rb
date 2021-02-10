@@ -10,6 +10,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    @restaurants = Restaurant.all
+    @dishes = Dish.all
     erb :index
   end
 
