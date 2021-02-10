@@ -1,5 +1,5 @@
-<h1>All Our Users' Restaurants</h1>
-<% @restaurants.each do |r| %>
+<h1>Your Logged Restaurants</h1>
+<% @my_restaurants.each do |r| %>
   Restaurant Name: <%= r.name %><br>
   Restaurant Type: <%= r.cuisine %> <br>
   <% if r.user %>

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      "Congratulations #{user.username}"
+      redirect '/restaurants'
     else
       "No Match Found"
       # redirect '/login'
