@@ -1,10 +1,9 @@
 class DishesController < ApplicationController
 
   get '/dishes' do
-    @error_message = params[:error]
     redirect_if_not_logged_in
+    @error_message = params[:error]
     @dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten
-    
     erb :'dishes/index'
   end
 
@@ -15,6 +14,7 @@ class DishesController < ApplicationController
   end
 
   post '/dishes' do 
+    redirect_if_not_logged_in
     @dish = Dish.create(params[:dish])
     if !params["restaurant"]["name"].empty?
       @dish.restaurant = Restaurant.create(params[:restaurant])
@@ -36,9 +36,16 @@ class DishesController < ApplicationController
   end
 
   delete '/dishes/:id' do
+    redirect_if_not_logged_in
+    dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten
     dish = Dish.find(params[:id])
-    dish.destroy
-    redirect '/dishes'
+    if dishes.include?(dish)
+      dish.destroy
+      redirect '/dishes'
+    else
+      redirect '/dishes?error=invalid user'
+    end
+    
   end
 
   get '/dishes/:id/edit' do 
@@ -54,12 +61,18 @@ class DishesController < ApplicationController
   end
 
   patch '/dishes/:id' do 
+    redirect_if_not_logged_in
+    dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten
     dish = Dish.find(params[:id])
-    dish.update(params["dish"])
-    if !params["restaurant"]["name"].empty?
-      dish.restaurant = Restaurant.create(params[:restaurant])
-      dish.save
-    end
+    if dishes.include?(dish)
+      dish.update(params["dish"])
+      if !params["restaurant"]["name"].empty?
+        dish.restaurant = Restaurant.create(params[:restaurant])
+        dish.save
+      end
       redirect "/dishes/#{dish.id}"
+    else
+      redirect '/dishes?error=invalid user'
+    end
   end
 end
