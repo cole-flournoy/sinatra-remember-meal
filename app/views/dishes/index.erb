@@ -1,4 +1,9 @@
 <h1>Your Dishes</h1>
+<% unless !@error_message %>
+  ** You don't have permission to view that dish. Select a dish below for more detail**<br>
+  <br><br>
+<% end %>
+
 <% if @dishes == [] %>
   <br><br><br>
   Looks like you haven't logged any dishes yet, would you like to <a href="/dishes/new">add a new one?</a>  

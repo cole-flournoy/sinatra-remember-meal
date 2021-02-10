@@ -25,6 +25,7 @@
   <br>
   <label> Restaurant Type: </label>
   <input type="text" name="restaurant[cuisine]"> </br>
+  <input type="hidden" name="restaurant[user_id]" value="<%= current_user.id %>">
   <br><br>
 
   <input type="submit" value="Edit">
