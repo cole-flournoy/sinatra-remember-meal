@@ -8,5 +8,12 @@
   "Cole Flournoy"
 
     <%= yield %> 
+  
+  <% unless !logged_in? %>
+    <br><br><br><br>
+    Logged in as <%= current_user.username %>
+    <br>
+    <a href="/logout">Log Out</a>
+  <% end %>
   </body>
 </html>
