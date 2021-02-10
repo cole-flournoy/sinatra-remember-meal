@@ -1,10 +1,15 @@
 <h1>Your Logged Restaurants</h1>
-<% @my_restaurants.each do |r| %>
-  Restaurant Name: <%= r.name %><br>
-  Restaurant Type: <%= r.cuisine %> <br>
-  <% if r.user %>
-    Added By User: <%= r.user.username %> <br><br>
-  <% else %>
-    Added By User: Unknown
+<% if @my_restaurants == [] %>
+  <br><br><br>
+  Looks like you haven't logged any restaurants yet, would you like to <a href="/restaurants/new">add a new one?</a>  
+<% else %>
+  <% @my_restaurants.each do |r| %>
+    Restaurant Name: <%= r.name %><br>
+    Restaurant Type: <%= r.cuisine %> <br>
+    <% if r.user %>
+      Added By User: <%= r.user.username %> <br><br>
+    <% else %>
+      Added By User: Unknown
+    <% end %>
   <% end %>
 <% end %>
