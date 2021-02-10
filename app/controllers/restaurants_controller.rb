@@ -4,6 +4,7 @@ class RestaurantsController < ApplicationController
     redirect_if_not_logged_in
     user = User.find_by(id: session[:user_id])
     @my_restaurants = user.restaurants
+    
     erb :'restaurants/index'
   end
 
@@ -12,7 +13,10 @@ class RestaurantsController < ApplicationController
   end
 
   post '/restaurants' do 
-    Restaurant.create(params)
+    restaurant = Restaurant.create(params)
+    restaurant.user = current_user 
+    restaurant.save
+
     redirect '/restaurants'
   end
 
