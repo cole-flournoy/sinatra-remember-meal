@@ -2,8 +2,7 @@ class RestaurantsController < ApplicationController
     
   get '/restaurants' do
     redirect_if_not_logged_in
-    user = User.find_by(id: session[:user_id])
-    @my_restaurants = user.restaurants
+    @my_restaurants = current_user.restaurants
     
     erb :'restaurants/index'
   end
