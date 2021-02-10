@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   post '/signup' do
     existing_username = User.find_by(username: params[:username])
     if existing_username
-      redirect '/signup?error=That username already exists'
+      redirect '/signup?error=username taken'
     else
       new_user = User.new(username: params[:username], password: params[:password])
 
