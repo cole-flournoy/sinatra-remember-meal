@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
     
   get '/restaurants' do
     redirect_if_not_logged_in
+    @error_message = params[:error]
     @my_restaurants = current_user.restaurants
     
     erb :'restaurants/index'
@@ -13,11 +14,7 @@ class RestaurantsController < ApplicationController
   end
 
   post '/restaurants' do 
-    redirect_if_not_logged_in
     restaurant = Restaurant.create(params)
-    restaurant.user = current_user 
-    restaurant.save
-
     redirect '/restaurants'
   end
 
@@ -26,7 +23,11 @@ class RestaurantsController < ApplicationController
     # include more detail here: rating, review, visits, dishes, etc.
     # most recent dish
     @restaurant = Restaurant.find(params[:id])
-    erb :'restaurants/show'
+    if current_user.restaurants.include?(@restaurant)
+      erb :'restaurants/show'
+    else
+      redirect '/restaurants?error=invalid user'
+    end
   end
 
   delete '/restaurants/:id' do

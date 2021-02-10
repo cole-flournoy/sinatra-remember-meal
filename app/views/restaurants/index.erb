@@ -1,4 +1,9 @@
 <h1>Your Logged Restaurants</h1>
+<% unless !@error_message %>
+  ** You don't have permission to view that restaurant. Select a restaurant below for more detail**<br>
+  <br><br>
+<% end %>
+
 <% if @my_restaurants == [] %>
   <br><br><br>
   Looks like you haven't logged any restaurants yet, would you like to <a href="/restaurants/new">add a new one?</a>  
