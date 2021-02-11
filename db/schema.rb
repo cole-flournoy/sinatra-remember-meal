@@ -15,8 +15,6 @@ ActiveRecord::Schema.define(version: 20210211202238) do
 
   create_table "dishes", force: :cascade do |t|
     t.string  "name"
-    t.date    "date"
-    t.float   "rating"
     t.integer "restaurant_id"
   end
 
