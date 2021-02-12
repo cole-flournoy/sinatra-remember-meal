@@ -1,13 +1,16 @@
 <h1>Create A New Dish</h1>
 <form action="/dishes" method="POST">
   <label> Dish Name: </label>
-  <input type="text" name="dish[name]"> </br>
+  <input type="text" name="dish[name]"> <br>
   
   <label> Visit Date: </label>
-  <input type="date" name="dish[date]"> </br>
+  <input type="date" name="visit[date]"> <br>
 
-  <label> Dish Rating: </label>
-  <input type="text" name="dish[rating]"> </br>
+  <label> Rating: </label>
+  <input type="text" name="visit[rating]"> <br><br>
+
+  <label> Review: </label>
+  <textarea name="visit[review]"></textarea> 
 
   <p>Select an existing Restaurant or create a new one below.</p>
 

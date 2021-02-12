@@ -10,9 +10,14 @@
 <% else %>
   <% @dishes.each do |d| %>
     Dish Name: <%= d.name %><br>
-    <% days_ago = Date.today - d.date %>
-    Visit Date: <%= d.date %> (<%= days_ago.to_i %> days ago)<br>
-    Rating: <%= d.rating %><br>
+    <% d.visits.each do |v| %>
+      <% days_ago = Date.today - v.date %>
+      <p style="margin-left: 40px">
+        Visit Date: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
+        Rating: <%= v.rating %><br>
+        Review: <%= v.review %><br>
+      </p>
+    <% end %>
     From Restaurant: <%= d.restaurant.name %><br><br>
   <% end %>
 <% end %>

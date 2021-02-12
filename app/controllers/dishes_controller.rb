@@ -3,7 +3,7 @@ class DishesController < ApplicationController
   get '/dishes' do
     redirect_if_not_logged_in
     @error_message = params[:error]
-    @dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten
+    @dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten 
     erb :'dishes/index'
   end
 
@@ -15,10 +15,13 @@ class DishesController < ApplicationController
 
   post '/dishes' do 
     redirect_if_not_logged_in
-    @dish = Dish.create(params[:dish])
+    dish = Dish.create(params[:dish])
+    visit = Visit.create(params[:visit])
+    visit.dish = dish
+    visit.save
     if !params["restaurant"]["name"].empty?
-      @dish.restaurant = Restaurant.create(params[:restaurant])
-      @dish.save
+      dish.restaurant = Restaurant.create(params[:restaurant])
+      dish.save
     end
     redirect '/dishes'
   end
