@@ -11,7 +11,7 @@
   <% @my_restaurants.each do |r| %>
     Restaurant Name: <%= r.name %><br>
     Restaurant Type: <%= r.cuisine %> <br>
-    <a href="/dishes/<%= r.id %>">Details</a><br>
+    <a href="/restaurants/<%= r.id %>">Details</a><br>
     <% if r.user %>
       Added By User: <%= r.user.username %> <br><br>
     <% else %>
