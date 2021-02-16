@@ -1,8 +1,17 @@
 <h1><%= @restaurant.name %> Detail</h1>
 Restaurant Type: <%= @restaurant.cuisine %> <br>
-Restaurant Rating: <br>
-Restaurant Reviews: <br>
-Number of Visits: <br>
+
+<% sum = 0 %>
+<% total_visits = 0 %>
+<% @restaurant.dishes.each do |d| %>
+  <% d.visits.each do |v| %>
+    <% sum += v.rating %>
+    <% total_visits += 1 %>
+  <% end %>
+<% end %>
+
+Average Dish Rating: <%= sum/total_visits %><br>
+Restaurant Review: <br>
 Logged Dishes: <br>
 <% if @restaurant.user %>
   Added By User: <%= @restaurant.user.username %> <br><br>
