@@ -28,10 +28,11 @@ class RestaurantsController < ApplicationController
     @restaurant.dishes.collect do |d|
       pairs = d.visits.collect{|v| [v.id, v.date]}
       pair = pairs.sort_by!{|d| d.second}.reverse!.first
-      
       rec = pair if pair && pair[1] > rec.second 
     end
+
     @most_rec = Visit.find(rec[0])
+    @dishes = @restaurant.dishes
 
     if current_user.restaurants.include?(@restaurant)
       erb :'restaurants/show'
