@@ -1,7 +1,7 @@
 bugs = User.create(username: "space_jam1", password: "bugsisbest")
 mj = User.create(username: "LikeMike23", password: "mjgoat")
 
-factory = Restaurant.create(name: "The Carrotcake Factory", cuisine: "Healthy", user: bugs)
+factory = Restaurant.create(name: "The Carrotcake Factory", cuisine: "Healthy", review: nil, user: bugs)
 
 ccake = Dish.create(name: "Carrot Cake", restaurant: factory)
 raw = Dish.create(name: "Raw Carrots", restaurant: factory)
@@ -16,8 +16,8 @@ Visit.create(date: "13 Feb 2021", rating: 9.0, review: "crunchy and delicious", 
 Visit.create(date: "14 Feb 2021", rating: 0.5, review: "horrible", dish: cooked)
 
 
-krus = Restaurant.create(name: "Karrots R Us", cuisine: "Italian", user: bugs)
+krus = Restaurant.create(name: "Karrots R Us", cuisine: "Italian", review: "what a great place", user: bugs)
 
-rings = Restaurant.create(name: "646", cuisine: "BBQ", user: mj)
-dd = Restaurant.create(name: "Dunkin Donuts", cuisine: "Breakfast", user: mj)
+rings = Restaurant.create(name: "646", cuisine: "BBQ", review: "best bbq in town", user: mj)
+dd = Restaurant.create(name: "Dunkin Donuts", cuisine: "Breakfast", review: nil, user: mj)
 
