@@ -34,7 +34,6 @@ class DishesController < ApplicationController
   end
 
   get '/dishes/:id' do 
-    # add details here
     redirect_if_not_logged_in
     dishes = current_user.restaurants.collect{ |r| r.dishes }.flatten
     @dish = Dish.find(params[:id])

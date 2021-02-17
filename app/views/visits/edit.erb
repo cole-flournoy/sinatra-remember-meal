@@ -1,0 +1,20 @@
+<h1>Edit Your Visit For Dish: <%= @visit.dish.name %></h1>
+<form action="/visits/<%= @visit.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+    
+  <label> Visit Date: </label>
+  <input type="date" name="visit[date]" value="<%= @visit.date %>"> </br>
+  
+  <label> Rating: </label>
+  <input type="text" name="visit[rating]" value="<%= @visit.rating %>"> </br>
+  
+  <label> Review: </label>
+  <input type="text" name="visit[review]" value="<%= @visit.review %>"> </br>
+
+  <input type="submit" value="Edit">
+</form>
+<br>
+<form method="post" action="/visits/<%= @visit.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Visit">
+</form>
