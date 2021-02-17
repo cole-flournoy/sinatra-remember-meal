@@ -1,12 +1,20 @@
-<h1>Create A New Dish</h1>
+
 <% unless @error_message != "invalid input" %>
   **Please fill in all required fields**<br><br>
 <% end %>
-
+<h3>Add a new dish</h3>
 
 <form action="/dishes" method="POST">
   <label> Dish Name: </label>
   <input type="text" name="dish[name]"> <br>
+  
+  <h3>Or select a previously logged dish to add a visit</h3>
+
+  <% @dishes.each do |d| %>
+    <input type="radio" name="visit[dish_id]" value="<%= d.id %>"><%= d.name %></input><br>
+  <% end %>
+
+  <h3>Then fill in the information about your visit</h3>
   
   <label> Visit Date: </label>
   <input type="date" name="visit[date]"> <br>
@@ -17,15 +25,15 @@
   <label> Review (optional): </label>
   <textarea name="visit[review]"></textarea> 
 
-  <p>Select an existing Restaurant or create a new one below.</p>
+  <h3>What restaurant does this dish belong to?</h3>
 
-  <h3>Existing Restaurants</h3>
+  <h4>Existing Restaurants</h4>
   <% @restaurants.each do |r| %>
     <input type="radio" name="dish[restaurant_id]" value="<%= r.id %>"><%= r.name %></input><br>
   <% end %>
   <br>
 
-  <h3>New Restaurant</h3>
+  <h4>New Restaurant</h4>
   <label>Restaurant Name: </label>
   <br>
   <input type="text" name="restaurant[name]"></input>

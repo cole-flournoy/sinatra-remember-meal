@@ -11,20 +11,22 @@ class DishesController < ApplicationController
     redirect_if_not_logged_in
     @error_message = params[:error]
     @restaurants = current_user.restaurants
+    @dishes = @restaurants.collect{ |r| r.dishes }.flatten
     erb :'dishes/new'
   end
 
   post '/dishes' do 
     redirect_if_not_logged_in
-    dish = Dish.create(params[:dish])
     visit = Visit.create(params[:visit])
-    visit.dish = dish
-    visit.save
+    if !params["dish"]["name"].empty?
+      visit.dish = Dish.create(params[:dish])
+      visit.save
+    end
     if !params["restaurant"]["name"].empty?
       dish.restaurant = Restaurant.create(params[:restaurant])
       dish.save
     end
-    if dish.valid? && visit.valid?
+    if visit.valid?
       redirect '/dishes'
     else
       redirect '/dishes/new?error=invalid input'
