@@ -1,5 +1,11 @@
 <h1><%= @restaurant.name %> Detail</h1>
 Restaurant Type: <%= @restaurant.cuisine %> <br>
+What Did I Get Last Time? <%= @most_rec.dish.name %> <br>
+<p style="margin-left: 40px">
+  Ordered <%= (Date.today - @most_rec.date).to_i %> Days Ago<br>
+  Rating: <%= @most_rec.rating %> <br>
+  Review: <%= @most_rec.review %> <br>
+</p>
 
 <% sum = 0 %>
 <% total_visits = 0 %>
@@ -10,8 +16,9 @@ Restaurant Type: <%= @restaurant.cuisine %> <br>
   <% end %>
 <% end %>
 
-Average Dish Rating: <%= sum/total_visits %><br>
+Average Rating For This Restaurant: <%= sum/total_visits %><br>
 Restaurant Review: <br>
+
 Logged Dishes: <br>
 <% if @restaurant.user %>
   Added By User: <%= @restaurant.user.username %> <br><br>
