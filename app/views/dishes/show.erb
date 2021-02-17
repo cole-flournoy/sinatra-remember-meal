@@ -8,6 +8,7 @@ Number of Times Ordered: <%= @dish.visits.length %><br>
     Visit Date: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
     Rating: <%= v.rating %><br>
     Review: <%= v.review %><br>
+    <a href="/visits/<%= v.id %>/edit">Edit Visit</a>
   </p>
 <% end %>
 <form method="post" action="/dishes/<%= @dish.id %>">
