@@ -21,8 +21,6 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants/:id' do 
     redirect_if_not_logged_in
-    # include more detail here: rating, review, visits, dishes, etc.
-    # most recent dish
     @restaurant = Restaurant.find(params[:id])
     rec = [0,0]
     @restaurant.dishes.collect do |d|

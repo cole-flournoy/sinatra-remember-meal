@@ -1,5 +1,8 @@
 <h1><%= @dish.name %> Detail</h1>
-<% @dish.visits.each do |v| %>
+
+From Restaurant: <%= @dish.restaurant.name %><br>
+Number of Times Ordered: <%= @dish.visits.length %><br>
+<% @dish.visits.reverse.each do |v| %>
   <% days_ago = Date.today - v.date %>
   <p style="margin-left: 40px">
     Visit Date: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
@@ -7,10 +10,7 @@
     Review: <%= v.review %><br>
   </p>
 <% end %>
-From Restaurant: <%= @dish.restaurant.name %><br>
-Number of Times Ordered: <%= @dish.visits.length %><br>
-
 <form method="post" action="/dishes/<%= @dish.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete">
+  <input type="submit" value="Delete Dish">
 </form>
