@@ -1,4 +1,8 @@
 <h1>Create A New Restaurant</h1>
+<% unless @error_message != "invalid input" %>
+  **All fields are required**<br><br>
+<% end %>
+
 <form action="/restaurants" method="POST">
   <label> Restaurant Name: </label>
   <input type="text" name="name"> </br>

@@ -10,13 +10,18 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants/new' do
     redirect_if_not_logged_in
+    @error_message = params[:error]
     erb :'restaurants/new'
   end
 
   post '/restaurants' do 
     redirect_if_not_logged_in
     restaurant = Restaurant.create(params)
-    redirect '/restaurants'
+    if restaurant.valid?
+      redirect '/restaurants'
+    else
+      redirect '/restaurants/new?error=invalid input'
+    end
   end
 
   get '/restaurants/:id' do 

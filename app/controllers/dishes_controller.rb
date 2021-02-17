@@ -9,6 +9,7 @@ class DishesController < ApplicationController
 
   get '/dishes/new' do
     redirect_if_not_logged_in
+    @error_message = params[:error]
     @restaurants = current_user.restaurants
     erb :'dishes/new'
   end
@@ -23,7 +24,11 @@ class DishesController < ApplicationController
       dish.restaurant = Restaurant.create(params[:restaurant])
       dish.save
     end
-    redirect '/dishes'
+    if dish.valid? && visit.valid?
+      redirect '/dishes'
+    else
+      redirect '/dishes/new?error=invalid input'
+    end
   end
 
   get '/dishes/:id' do 
