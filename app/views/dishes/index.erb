@@ -3,20 +3,29 @@
   ** You don't have permission to view that dish. Select a dish below for more detail**<br>
   <br><br>
 <% end %>
-
+<form action="/dishes/new">
+  <input type="submit" value="Log New Dish or Visit">
+</form><br>
 <% if @dishes == [] %>
   <br><br><br>
   Looks like you haven't logged any dishes yet, would you like to <a href="/dishes/new">add a new one?</a>  
 <% else %>
   <% @dishes.each do |d| %>
-    Dish Name: <%= d.name %><br>
+    Dish Name: <%= d.name %> <br>
     <% v = d.visits.reverse.first %>
     <% days_ago = Date.today - v.date %>
     <p style="margin-left: 40px">
-      Most Recent Visit: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
+      <% if days_ago.to_i > 30 %>
+        Most Recent Visit: <%= v.date %> (<%= days_ago.to_i / 30  %> months ago)<br>
+      <% else %>
+        Most Recent Visit: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
+      <% end %>
       Rating: <%= v.rating %><br>
       Review: <%= v.review %><br>
       <a href="/dishes/<%= d.id %>">View All Entries</a>
+      <form action="/dishes/<%= d.id %>/edit">
+        <input type="submit" value="Edit Dish">
+      </form>
     </p>
     From Restaurant: <%= d.restaurant.name %><br><br>
   <% end %>

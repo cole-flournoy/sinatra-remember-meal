@@ -23,8 +23,8 @@ class DishesController < ApplicationController
       visit.save
     end
     if !params["restaurant"]["name"].empty?
-      dish.restaurant = Restaurant.create(params[:restaurant])
-      dish.save
+      visit.dish.restaurant = Restaurant.create(params[:restaurant])
+      visit.dish.save
     end
     if visit.valid?
       redirect '/dishes'

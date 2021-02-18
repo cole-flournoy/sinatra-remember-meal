@@ -19,8 +19,8 @@
   <label> Visit Date: </label>
   <input type="date" name="visit[date]"> <br>
 
-  <label> Rating: </label>
-  <input type="text" name="visit[rating]"> <br><br>
+  <label> Rating (0.0 - 10.0): </label>
+  <input type="number" min="0" max="10" step="0.1" name="visit[rating]"> <br><br>
 
   <label> Review (optional): </label>
   <textarea name="visit[review]"></textarea> 
@@ -35,10 +35,11 @@
 
   <h4>New Restaurant</h4>
   <label>Restaurant Name: </label>
-  <br>
-  <input type="text" name="restaurant[name]"></input>
+  <input type="text" name="restaurant[name]"></br>
   <label> Restaurant Type: </label>
-  <input type="text" name="restaurant[cuisine]"> </br>
+  <input type="text" name="restaurant[cuisine]"></br> 
+  <label> Restaurant Review (optional): </label>
+  <input type="text" name="restaurant[review]"> </br>
   <input type="hidden" name="restaurant[user_id]" value="<%= current_user.id %>">
   <br><br>
 

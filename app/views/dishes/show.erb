@@ -2,15 +2,23 @@
 
 From Restaurant: <%= @dish.restaurant.name %><br>
 Number of Times Ordered: <%= @dish.visits.length %><br>
+<form action="/dishes/<%= @dish.id %>/edit">
+  <input type="submit" value="Edit Dish">
+</form>
 <% @dish.visits.reverse.each do |v| %>
   <% days_ago = Date.today - v.date %>
-  <p style="margin-left: 40px">
-    Visit Date: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
-    Rating: <%= v.rating %><br>
-    Review: <%= v.review %><br>
-    <a href="/visits/<%= v.id %>/edit">Edit Visit</a>
-  </p>
+  <div style="margin-left: 40px">
+    <p>
+      Visit Date: <%= v.date %> (<%= days_ago.to_i %> days ago)<br>
+      Rating: <%= v.rating %><br>
+      Review: <%= v.review %>
+      <form action="/visits/<%= v.id %>/edit">
+        <input type="submit" value="Edit Visit">
+      </form>
+    </p>
+  </div>
 <% end %>
+<br>
 <form method="post" action="/dishes/<%= @dish.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Dish">

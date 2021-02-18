@@ -20,7 +20,11 @@
   <input type="text" name="restaurant[name]"></input>
   <br>
   <label> Restaurant Type: </label>
-  <input type="text" name="restaurant[cuisine]"> </br>
+  <input type="text" name="restaurant[cuisine]"> 
+  </br>
+  <label> Restaurant Review (optional): </label>
+  <input type="text" name="restaurant[review]"> 
+  </br>
   <input type="hidden" name="restaurant[user_id]" value="<%= current_user.id %>">
   <br><br>
 
@@ -30,5 +34,5 @@
 
 <form method="post" action="/dishes/<%= @dish.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Remove This Dish">
+  <input type="submit" value="Delete This Dish">
 </form>
