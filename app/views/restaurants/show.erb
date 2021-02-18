@@ -17,9 +17,17 @@ What Did I Get Last Time? <%= @most_rec.dish.name %> <br>
 <% end %>
 
 Average Rating For This Restaurant: <%= sum/total_visits %><br>
-Restaurant Review: <br>
+Restaurant Review: <br><br>
 
-All Logged Dishes: <br>
+<form action="/restaurants/<%= @restaurant.id %>/edit">
+  <input type="submit" value="Edit Restaurant">
+</form><br>
+
+All Logged Dishes: <br><br>
+<form action="/dishes/new">
+  <input type="submit" value="New Dish">
+</form>
+
 <% @dishes.each do |d| %>
 <p style="margin-left: 40px">
   Name: <%= d.name %> <a href="/dishes/<%= d.id %>">(Detail)</a><br>
@@ -33,6 +41,7 @@ All Logged Dishes: <br>
   Avg Rating: <%= total %><br><br>
 </p>  
 <% end %>
+
 <form method="post" action="/restaurants/<%= @restaurant.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Restaurant">
