@@ -12,7 +12,10 @@
     Restaurant Name: <%= r.name %><br>
     Restaurant Type: <%= r.cuisine %> <br>
     Restaurant Review: <%= r.review %> <br>
-    <a href="/restaurants/<%= r.id %>">Details</a><br><br>
+    <form action="/restaurants/<%= r.id %>">
+      <input type="submit" value="Details">
+    </form>
+    <br><br>
   <% end %>
 <% end %>
 
