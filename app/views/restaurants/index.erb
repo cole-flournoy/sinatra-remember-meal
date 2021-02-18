@@ -11,11 +11,10 @@
   <% @my_restaurants.each do |r| %>
     Restaurant Name: <%= r.name %><br>
     Restaurant Type: <%= r.cuisine %> <br>
-    <a href="/restaurants/<%= r.id %>">Details</a><br>
-    <% if r.user %>
-      Added By User: <%= r.user.username %> <br><br>
-    <% else %>
-      Added By User: Unknown
-    <% end %>
+    <a href="/restaurants/<%= r.id %>">Details</a><br><br>
   <% end %>
 <% end %>
+
+<form action="/restaurants/new">
+  <input type="submit" value="New Restaurant">
+</form>

@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
 
+  get '/users/:id' do
+    redirect_if_not_logged_in
+    @user = User.find(params[:id]) 
+    if @user && @user == current_user
+      erb :'users/index'
+    else
+      redirect "/users/#{current_user.id}"
+    end
+  end
+  
   get '/signup' do
     @error_message = params[:error]
     if !logged_in?
