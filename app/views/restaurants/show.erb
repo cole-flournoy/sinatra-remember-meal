@@ -17,7 +17,7 @@ What Did I Get Last Time? <%= @most_rec.dish.name %> <br>
 <% end %>
 
 Average Rating For This Restaurant: <%= sum/total_visits %><br>
-Restaurant Review: <br><br>
+Restaurant Review: <%= @restaurant.review %> <br><br>
 
 <form action="/restaurants/<%= @restaurant.id %>/edit">
   <input type="submit" value="Edit Restaurant">

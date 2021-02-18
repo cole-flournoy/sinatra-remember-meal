@@ -11,6 +11,7 @@
   <% @my_restaurants.each do |r| %>
     Restaurant Name: <%= r.name %><br>
     Restaurant Type: <%= r.cuisine %> <br>
+    Restaurant Review: <%= r.review %> <br>
     <a href="/restaurants/<%= r.id %>">Details</a><br><br>
   <% end %>
 <% end %>
