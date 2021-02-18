@@ -13,8 +13,6 @@ To get started, run `shotgun` in your terminal and open the local server in a ne
 
 From there, the application should be self-explanatory. Once you sign up, you'll be able to add, view, edit, and delete all your restaurants and dishes.  
 
-```
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
