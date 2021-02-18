@@ -3,17 +3,18 @@
   <input id="hidden" type="hidden" name="_method" value="PATCH">
     
   <label> Visit Date: </label>
-  <input type="date" name="visit[date]" value="<%= @visit.date %>"> </br>
+  <input type="date" name="visit[date]" value="<%= @visit.date %>"> <br>
   
-  <label> Rating: </label>
-  <input type="text" name="visit[rating]" value="<%= @visit.rating %>"> </br>
-  
-  <label> Review: </label>
-  <input type="text" name="visit[review]" value="<%= @visit.review %>"> </br>
+  <label> Rating (0.0 - 10.0): </label>
+  <input type="number" min="0" max="10" step="0.1" name="visit[rating]" value="<%= @visit.rating %>"> <br><br>
+
+
+  <label> Review (optional): </label>
+  <input type="text" name="visit[review]" value="<%= @visit.review %>"> <br><br>
 
   <input type="submit" value="Edit">
 </form>
-<br>
+<br><br>
 <form method="post" action="/visits/<%= @visit.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Visit">
