@@ -28,14 +28,15 @@ class RestaurantsController < ApplicationController
     redirect_if_not_logged_in
     @restaurant = Restaurant.find(params[:id])
     rec = [0,0]
-    @restaurant.dishes.collect do |d|
-      pairs = d.visits.collect{|v| [v.id, v.date]}
-      pair = pairs.sort_by!{|d| d.second}.reverse!.first
-      rec = pair if pair && pair[1] > rec.second 
-    end
-
-    @most_rec = Visit.find(rec[0])
     @dishes = @restaurant.dishes
+    unless @dishes.empty?
+      @restaurant.dishes.collect do |d|
+        pairs = d.visits.collect{|v| [v.id, v.date]}
+        pair = pairs.sort_by!{|d| d.second}.reverse!.first
+        rec = pair if pair && pair[1] > rec.second 
+      end
+      @most_rec = Visit.find(rec[0])
+    end
 
     if current_user.restaurants.include?(@restaurant)
       erb :'restaurants/show'

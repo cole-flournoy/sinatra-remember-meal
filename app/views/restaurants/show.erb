@@ -1,45 +1,51 @@
 <h1><%= @restaurant.name %> Detail</h1>
 Restaurant Type: <%= @restaurant.cuisine %> <br>
-What Did I Get Last Time? <%= @most_rec.dish.name %> <br>
-<p style="margin-left: 40px">
-  Ordered <%= (Date.today - @most_rec.date).to_i %> Days Ago<br>
-  Rating: <%= @most_rec.rating %> <br>
-  Review: <%= @most_rec.review %> <br>
-</p>
+<% if @dishes.empty? %>
+  Restaurant Review: <%= @restaurant.review %> <br><br>
+  It looks like there are no dishes logged for this restaurant <br>
+  Would you like to <a href="/dishes/new">add one</a>? <br><br>
+<% else %>
+  What Did I Get Last Time? <%= @most_rec.dish.name %> <br>
+  <p style="margin-left: 40px">
+    Ordered <%= (Date.today - @most_rec.date).to_i %> Days Ago<br>
+    Rating: <%= @most_rec.rating %> <br>
+    Review: <%= @most_rec.review %> <br>
+  </p>
 
-<% sum = 0 %>
-<% total_visits = 0 %>
-<% @dishes.each do |d| %>
-  <% d.visits.each do |v| %>
-    <% sum += v.rating %>
-    <% total_visits += 1 %>
+  <% sum = 0 %>
+  <% total_visits = 0 %>
+  <% @dishes.each do |d| %>
+    <% d.visits.each do |v| %>
+      <% sum += v.rating %>
+      <% total_visits += 1 %>
+    <% end %>
   <% end %>
-<% end %>
 
-Average Rating For This Restaurant: <%= sum/total_visits %><br>
-Restaurant Review: <%= @restaurant.review %> <br><br>
+  Average Rating For This Restaurant: <%= sum/total_visits %><br>
+  Restaurant Review: <%= @restaurant.review %> <br><br>
 
-<form action="/restaurants/<%= @restaurant.id %>/edit">
-  <input type="submit" value="Edit Restaurant">
-</form><br>
+  <form action="/restaurants/<%= @restaurant.id %>/edit">
+    <input type="submit" value="Edit Restaurant">
+  </form><br>
 
-All Logged Dishes: <br><br>
-<form action="/dishes/new">
-  <input type="submit" value="New Dish">
-</form>
+  All Logged Dishes: <br><br>
+  <form action="/dishes/new">
+    <input type="submit" value="New Dish">
+  </form>
 
-<% @dishes.each do |d| %>
-<p style="margin-left: 40px">
-  Name: <%= d.name %> <a href="/dishes/<%= d.id %>">(Detail)</a><br>
-  <% total = 0 %>
-  <% d.visits.each do |v| %>
-    <% total += v.rating %>
+  <% @dishes.each do |d| %>
+  <p style="margin-left: 40px">
+    Name: <%= d.name %> <a href="/dishes/<%= d.id %>">(Detail)</a><br>
+    <% total = 0 %>
+    <% d.visits.each do |v| %>
+      <% total += v.rating %>
+    <% end %>
+    <% total /= d.visits.length %>
+    
+    Ordered: <%= d.visits.length %> times<br>
+    Avg Rating: <%= total %><br><br>
+  </p>  
   <% end %>
-  <% total /= d.visits.length %>
-  
-  Ordered: <%= d.visits.length %> times<br>
-  Avg Rating: <%= total %><br><br>
-</p>  
 <% end %>
 
 <form method="post" action="/restaurants/<%= @restaurant.id %>">
