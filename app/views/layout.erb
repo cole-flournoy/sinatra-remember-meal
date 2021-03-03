@@ -5,14 +5,22 @@
   </head>
   
   <body>
+    <% unless !logged_in? %>
+      <a style="margin-left: 40px" href="/restaurants">My Restaurants</a>
+      <a style="margin-left: 60px"href="/dishes">My Dishes</a>
+      <a style="margin-left: 60px"href="/restaurants/new">Log New Restaurant</a>
+      <a style="margin-left: 60px"href="/dishes/new">Log New Dish</a>
+      <br><br>
+    <% end %>
+
 
     <%= yield %> 
   
-  <% unless !logged_in? %>
-    <br><br><br><br>
-    Logged in as <%= current_user.username %>
-    <br>
-    <a href="/logout">Log Out</a>
-  <% end %>
+    <% unless !logged_in? %>
+      <br><br><br><br>
+      Logged in as <%= current_user.username %>
+      <br>
+      <a href="/logout">Log Out</a>
+    <% end %>
   </body>
 </html>
