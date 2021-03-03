@@ -1,5 +1,9 @@
 <h2>Welcome!</h2>
 
+Our restaurant and meal tracker is here to make sure you never again stare blankly at the menu of a restaurant you haven't been to in a while. <br> 
+What did I get last time?<br>
+Was it even good?<br>
+
 <h3>Here are some of our users' restaurants:</h3>
 <% @restaurants.each_with_index do |r, i| %>
   <%= r.name %> <br>
@@ -13,4 +17,4 @@
 <% end %>
 
 
-<h3> You must <a href="/login">Log In</a> or <a href="/signup">Sign Up</a> to view more content </h3>
+<h3><a href="/login">Log In</a> or <a href="/signup">Sign Up</a> to log your entries! </h3>
