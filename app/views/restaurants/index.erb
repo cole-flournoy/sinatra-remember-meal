@@ -6,7 +6,7 @@
 
 <% if @my_restaurants == [] %>
   <br><br><br>
-  Looks like you haven't logged any restaurants yet, would you like to <a href="/restaurants/new">add a new one?</a>  
+  Looks like you haven't logged any restaurants yet, would you like to add a new one?<br>  
 <% else %>
   <% @my_restaurants.each do |r| %>
     Restaurant Name: <%= r.name %><br>
