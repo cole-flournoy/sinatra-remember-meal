@@ -16,8 +16,9 @@ class RestaurantsController < ApplicationController
 
   post '/restaurants' do 
     redirect_if_not_logged_in
-    restaurant = Restaurant.create(params)
+    restaurant = Restaurant.new(params)
     if restaurant.valid?
+      restaurant.save
       redirect '/restaurants'
     else
       redirect '/restaurants/new?error=invalid input'
