@@ -19,14 +19,23 @@ class DishesController < ApplicationController
     redirect_if_not_logged_in
     visit = Visit.create(params[:visit])
     if !params["dish"]["name"].empty?
-      visit.dish = Dish.create(params[:dish])
-      visit.save
+      new_dish = Dish.new(params[:dish])
+      if !params["restaurant"]["name"].empty?
+        new_rest = Restaurant.create(params[:restaurant])
+        new_dish.restaurant = new_rest
+      end
+      new_dish.save
+      visit.dish = new_dish
+    else
+      if !params["restaurant"]["name"].empty?
+        new_rest = Restaurant.create(params[:restaurant])
+        visit.dish.restaurant = new_rest
+      end
     end
-    if !params["restaurant"]["name"].empty?
-      visit.dish.restaurant = Restaurant.create(params[:restaurant])
-      visit.dish.save
-    end
+  
+    binding.pry
     if visit.valid?
+      visit.save
       redirect '/dishes'
     else
       redirect '/dishes/new?error=invalid input'
