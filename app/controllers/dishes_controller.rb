@@ -33,7 +33,6 @@ class DishesController < ApplicationController
       end
     end
   
-    binding.pry
     if visit.valid?
       visit.save
       redirect '/dishes'

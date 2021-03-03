@@ -6,7 +6,6 @@ class VisitsController < ApplicationController
     visit = Visit.find(params[:id])
     if dishes.include?(visit.dish)
       visit.destroy
-      # if visit is the only one, delete the dish
       redirect '/dishes'
     else
       redirect '/dishes?error=invalid user'
