@@ -11,6 +11,17 @@
       <a style="margin-left: 60px"href="/restaurants/new">Log New Restaurant</a>
       <a style="margin-left: 60px"href="/dishes/new">Log New Dish</a>
       <br><br>
+
+
+    <form action="/results" method="POST">
+      <label> Search: </label>
+      <input type="text" name="search"> </br>
+      
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <input type="submit" value="Search Dishes">
+    </form>
+
     <% end %>
 
 

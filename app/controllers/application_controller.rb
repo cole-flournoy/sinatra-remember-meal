@@ -15,6 +15,13 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  post '/results' do
+    @results = Dish.where("name LIKE ?", "%#{params[:search]}%")
+
+    erb :results
+  end 
+  
+  
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?
