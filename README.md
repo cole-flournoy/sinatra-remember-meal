@@ -2,6 +2,8 @@
 
 Ever stare blankly at the menu and try to remember what you ordered last time you were at the restaurant (or whether you liked what you ordered)? This is a basic Sinatra application for logging restaurants and meals, so you always know what you got last time (even if last time was a couple years ago). 
 
+For a video demo, click [here](https://youtu.be/AxzGWKs00TQ)
+
 ## Installation
 1. Clone this repo and `bundle install` to make sure you have all the right gem dependencies
 2. Run `rake db:migrate` to set up your database
